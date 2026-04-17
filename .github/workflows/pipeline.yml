@@ -1,0 +1,22 @@
+name: Deploy new version of autoscheduler
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Build and deploy to prod
+    runs-on: self-hosted
+    steps:
+      - name: Pull latest code
+        env:
+          GIT_SSH_COMMAND: "ssh -i /home/team-ttd/.ssh/id_ed25519_org -o StrictHostKeyChecking=no"
+        run: |
+          cd /opt/services/team-ttd/autoscheduler
+          git pull origin main
+
+      - name: Deploy prod
+        working-directory: /opt/services/team-ttd/autoscheduler
+        run: docker compose up --build -d
