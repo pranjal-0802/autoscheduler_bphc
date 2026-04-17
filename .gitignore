@@ -106,6 +106,17 @@ venv.bak/
 .mypy_cache/
 
 .idea/*
+.vscode/
 
 # Personal
 todo
+
+# Logs directory
+logs/
+
+# uv
+.uv/
+uv.lock
+
+# ruff
+.ruff_cache/
